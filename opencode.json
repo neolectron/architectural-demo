@@ -1,0 +1,121 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "experimental": {
+    "disable_paste_summary": true
+  },
+  "autoupdate": "notify",
+  "plugin": ["@slkiser/opencode-quota", "@simonwjackson/opencode-direnv"],
+  "permission": {
+    "todoread": "deny",
+    "todowrite": "deny"
+  },
+  "agent": {
+    "architect": {
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "webfetch": "allow",
+        "bash": "deny",
+        "edit": "allow",
+        "write": "allow"
+      }
+    },
+    "build": {
+      "permission": {
+        "task": {
+          "*": "allow"
+        },
+        "webfetch": "allow"
+      }
+    },
+    "plan": {
+      "permission": {
+        "task": {
+          "*": "allow"
+        },
+        "webfetch": "allow"
+      }
+    }
+  },
+  "lsp": {
+    "typescript": {
+      "command": ["pnpm", "exec", "tsgo", "--lsp", "--stdio"]
+    }
+  },
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "nix",
+        "shell",
+        "nixpkgs#nodejs_22",
+        "-c",
+        "npx",
+        "--force",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--autoConnect"
+      ]
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-7e6803bf-ef65-4666-96a9-25157228b64c"
+      }
+    },
+    "shadcn": {
+      "type": "local",
+      "command": [
+        "nix",
+        "shell",
+        "nixpkgs#nodejs_22",
+        "-c",
+        "npx",
+        "--force",
+        "-y",
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "postgresql": {
+      "type": "local",
+      "command": [
+        "nix",
+        "shell",
+        "nixpkgs#nodejs_22",
+        "-c",
+        "npx",
+        "--force",
+        "-y",
+        "@executeautomation/database-server",
+        "--postgresql",
+        "--host",
+        "localhost",
+        "--database",
+        "geos",
+        "--user",
+        "postgres",
+        "--password",
+        "password"
+      ]
+    },
+    "pg_admin": {
+      "type": "local",
+      "command": [
+        "nix",
+        "shell",
+        "nixpkgs#nodejs_22",
+        "-c",
+        "npx",
+        "--force",
+        "-y",
+        "@henkey/postgres-mcp-server"
+      ],
+      "environment": {
+        "DATABASE_URL": "postgres://postgres:password@localhost:5432/geos"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.direnv
+node_modules
+.env
+.DS_Store
+dist
+dist-ssr
+*.local
+.nitro
+.tanstack
+.output
+*.local.md
+.effect
+# .opencode uses bun; keep bun.lock, ignore npm lockfiles stray opencode
+# plugins sometimes generate alongside.
+.opencode/package-lock.json
+references
