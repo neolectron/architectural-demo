@@ -43,3 +43,6 @@ It is tempting to extract that repeated orchestration into an exported helper ab
 That exported helper becomes part of the client-importable `*.fn.ts` module surface, while it still imports `runPromise`, `Effect`, and backend service modules.
 
 The point is to show how a working architecture can accidentally leak backend code into frontend code when server-only logic is lifted out of the server-function handler and exported from the same file that frontend route code imports for query factories.
+
+<img width="764" height="68" alt="image" src="https://github.com/user-attachments/assets/67f67427-cbbf-4021-a1dd-188b4d0c7d93" />
+
